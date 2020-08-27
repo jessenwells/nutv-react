@@ -3,8 +3,9 @@ import { useState, useEffect } from 'react'
 export const useTvdb = (seriesInfo) => {
  const [response, setResponse] = useState()
  const [loaded, setLoaded] = useState(false)
- const key = 'QZR34YS24AD0JLNP'
+
  useEffect(() => {
+  let key = 'QZR34YS24AD0JLNP'
   const getTvdb = async () => {
    const getKey = await fetch('/login', {
     method: 'POST',

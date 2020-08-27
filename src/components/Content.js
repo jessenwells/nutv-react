@@ -22,8 +22,8 @@ const Content = () => {
 
  return (
   <>
-   <div style={styles.sidebar}>{loaded && watchlist.map((show) => <List show={show} />)}</div>
-   <div style={styles.container}>{loaded && schedule.map((show) => <Item show={show} setList={setList} />)}</div>
+   <div style={styles.sidebar}>{loaded && watchlist.map((show, i) => <List show={show} key={i} />)}</div>
+   <div style={styles.container}>{loaded && schedule.map((show, i) => <Item show={show} setList={setList} key={i} />)}</div>
   </>
  )
 }
