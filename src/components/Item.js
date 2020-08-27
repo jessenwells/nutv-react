@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useTvdb } from '../hooks/useTvdb'
 
-const Item = (show) => {
- const { response, loaded } = useTvdb(show)
+const Item = ({ show, setList }) => {
+ const { response, loaded } = useTvdb({ show })
  const [meta, setMeta] = useState()
 
  useEffect(() => {
@@ -15,6 +15,9 @@ const Item = (show) => {
     {meta && meta.poster && (
      <div style={styles.imageWrap} className={classes(meta.genre)}>
       <img src={`https://www.thetvdb.com/banners/${meta.poster}`} alt='' style={styles.image} />
+      <button style={styles.bttn} onClick={() => setList(meta)}>
+       add to watchlist
+      </button>
      </div>
     )}
    </>
@@ -22,7 +25,7 @@ const Item = (show) => {
  )
 }
 
-const classes = (genre) => genre && `${genre.join(' ')}`.replace('  ', ' ').toLowerCase()
+let classes = (genre) => genre && `${genre.join(' ')}`.replace('  ', ' ').toLowerCase()
 
 let styles = {
  imageWrap: {
@@ -31,6 +34,14 @@ let styles = {
  },
  image: {
   width: '100%',
+ },
+ bttn: {
+  width: '100%',
+  borderRadius: 0,
+  border: 0,
+  textTransform: 'uppercase',
+  padding: '8px',
+  cursor: 'pointer',
  },
 }
 
